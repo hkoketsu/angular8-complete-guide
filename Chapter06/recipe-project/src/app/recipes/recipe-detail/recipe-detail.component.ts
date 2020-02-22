@@ -9,7 +9,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   // styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
-  id : number;
+  id: number;
   recipe: Recipe;
 
   constructor(private recipeService: RecipeService,
@@ -22,7 +22,7 @@ export class RecipeDetailComponent implements OnInit {
         this.id = +params.id;
         this.recipe = this.recipeService.getRecipe(this.id);
       }
-    )
+    );
   }
 
   onAddToShoppingList() {
@@ -30,7 +30,12 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onEdit() {
-    this.router.navigate(['edit'], {relativeTo: this.route})
+    this.router.navigate(['edit'], {relativeTo: this.route});
+  }
+
+  onDelete() {
+    this.recipeService.deleteRecipe(this.id);
+    this.router.navigate(['/recipes']);
   }
 
 }
